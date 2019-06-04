@@ -6,25 +6,35 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { BriApiProvider } from '../providers/bri-api/bri-api';
+import { HttpClientModule} from "@angular/common/http";
+import {ConnectionPage} from "../pages/connection/connection";
+import { ConnectionApiProvider } from '../providers/connection-api/connection-api';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ConnectionPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    IonicModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ConnectionPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BriApiProvider,
+    ConnectionApiProvider
   ]
 })
 export class AppModule {}
