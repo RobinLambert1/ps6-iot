@@ -4,6 +4,7 @@ import {HomePage} from "../home/home";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Student} from "../../models/student";
 import {ConnectionApiProvider} from "../../providers/connection-api/connection-api";
+import {StudentHomePage} from "../student-home/student-home";
 
 /**
  * Generated class for the ConnectionPage page.
@@ -45,7 +46,7 @@ export class ConnectionPage {
             user: this.connection.user,
           });
         } else if (this.connection.isStudent){
-          this.navCtrl.push(HomePage, {
+          this.navCtrl.push(StudentHomePage, {
             user: this.connection.user,
           });
         }
