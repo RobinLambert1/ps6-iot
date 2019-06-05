@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {User} from "../../models/user";
+import {BarcodeScanner, BarcodeScannerOptions} from '@ionic-native/barcode-scanner';
 
 /**
  * Generated class for the StudentHomePage page.
@@ -17,14 +18,21 @@ import {User} from "../../models/user";
 export class StudentHomePage {
 
   student: User;
+  scannedData: {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.student = navParams.get('user');
-    this.initDate()
+  barCodeScannerOptions: BarcodeScannerOptions;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public barCodeScanner: BarcodeScanner) {
+    //this.student = navParams.get('user');
+    //this.initDate();
+
+    this.barCodeScannerOptions = {
+      showTorchButton: true,
+      showFlipCameraButton: true
+    }
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StudentPage');
   }
 
   private initDate(){
@@ -34,6 +42,13 @@ export class StudentHomePage {
       this.student.studentInfo.appointment.timeSlot.endTime =
         new Date(this.student.studentInfo.appointment.timeSlot.endTime)
     }
+  }
+
+  scan() {
+    this.barCodeScanner.scan().then(data => {
+      console.log(data);
+      this.scannedData = data;
+    });
   }
 
 }
