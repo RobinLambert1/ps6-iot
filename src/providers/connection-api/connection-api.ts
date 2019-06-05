@@ -2,14 +2,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {User} from "../../models/user";
 import {BehaviorSubject} from "rxjs";
-import {RequestOptions} from "@angular/http";
 
-/*
-  Generated class for the ConnectionApiProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ConnectionApiProvider {
 

@@ -1,46 +1,54 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {BriApiProvider} from "../../providers/bri-api/bri-api";
-import {User} from "../../models/user";
+import {BarcodeScanner, BarcodeScannerOptions} from "@ionic-native/barcode-scanner";
+import {GlobalApiProvider} from "../../providers/global-api/global-api";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  scannedData: {};
+  res: any;
+  form: FormGroup;
+  barCodeScannerOptions: BarcodeScannerOptions;
 
-  appointmentOfTheDay: any[] = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public barCodeScanner: BarcodeScanner, public globalApi: GlobalApiProvider,
+              public formBuilder: FormBuilder) {
 
-  bri: User;
+    this.form = this.formBuilder.group({
+      request: ['']
+    });
 
-  colorByStatus = {
-    none: '#FFFFFF',
-    waiting: '#98FB98',
-    inProcess: '#00aeef',
-    done: '#C0C0C0'
-  };
-
-  constructor(public navCtrl: NavController, public briProvider: BriApiProvider, public navParams: NavParams) {
-    this.bri = navParams.get('user');
-    this.getAppointment();
-
+    this.barCodeScannerOptions = {
+      showTorchButton: true,
+      showFlipCameraButton: true
+    }
   }
 
-  getAppointment() {
-    this.briProvider.getAppointmentOfTheDay(this.bri._id).subscribe(appointment => {
-      if (appointment !== undefined) {
-        const available = [];
-        appointment.forEach(a => {
-          a.available.forEach(av => available.push((av)));
-        });
-        // convert to date
-        available.map(a => {
-          a.slot.departureTime = new Date(a.slot.departureTime);
-          a.slot.endTime = new Date(a.slot.endTime);
-        });
-        this.appointmentOfTheDay = available.filter(a => a.reservedBy !== undefined);
-      }
+  ionViewDidLoad() {
+  }
+
+  scan() {
+    this.barCodeScanner.scan().then(data => {
+      this.scannedData = data;
+      this.globalApi.requestQrResult(data.text).subscribe(x => {
+        console.log('result');
+        console.log(x);
+        this.res = x;
+      })
+    }).catch(err => {
+      console.log(err);
     });
   }
 
+  getRequest(){
+    this.globalApi.requestQrResult(this.form.value.request).subscribe(x => {
+      console.log(x);
+    })
+  }
+
 }
+

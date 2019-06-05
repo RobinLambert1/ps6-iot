@@ -10,16 +10,13 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { BriApiProvider } from '../providers/bri-api/bri-api';
 import { HttpClientModule} from "@angular/common/http";
-import {ConnectionPage} from "../pages/connection/connection";
 import { ConnectionApiProvider } from '../providers/connection-api/connection-api';
-import { StudentHomePage} from "../pages/student-home/student-home";
+import { GlobalApiProvider } from '../providers/global-api/global-api';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ConnectionPage,
-    StudentHomePage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -30,9 +27,7 @@ import { StudentHomePage} from "../pages/student-home/student-home";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ConnectionPage,
-    StudentHomePage
+    HomePage
   ],
   providers: [
     StatusBar,
@@ -40,7 +35,8 @@ import { StudentHomePage} from "../pages/student-home/student-home";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BriApiProvider,
     ConnectionApiProvider,
-    BarcodeScanner
+    BarcodeScanner,
+    GlobalApiProvider
   ]
 })
 export class AppModule {}

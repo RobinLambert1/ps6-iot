@@ -1,18 +1,25 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      BRI
-    </ion-title>
+    <ion-title>Bonjour <!--{{this.student.firstName}} --></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  Vos rendez-vous du jour
 
-  <ion-list>
-    <ion-item *ngFor="let item of appointmentOfTheDay" [style.background-color]="this.colorByStatus[item.reservedBy.studentInfo.appointment.status]">
-      {{item.reservedBy.firstName}} {{item.reservedBy.lastName}}
-    </ion-item>
-  </ion-list>
+  <form class="connection-form" [formGroup]="form">
+    <ion-input placeholder="Request" [formControlName]="'request'"></ion-input>
+    <button ion-button shape="round" (click)="getRequest()">Connexion</button>
+  </form>
+
+  <button ion-button shape="round" (click)="scan()">QR</button>
+  <ion-card *ngIf="res !== undefined">
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let r of res">
+          <ion-label>{{r}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
