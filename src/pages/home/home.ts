@@ -4,6 +4,7 @@ import {BarcodeScanner, BarcodeScannerOptions} from "@ionic-native/barcode-scann
 import {GlobalApiProvider} from "../../providers/global-api/global-api";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {QueuePage} from "../queue/queue";
+import {MessagePage} from "../message/message";
 
 @Component({
   selector: 'page-home',
@@ -49,6 +50,18 @@ export class HomePage {
         });
       }
     })
+  }
+
+  putRequest() {
+    this.globalApi.putRequest(this.form.value.request, {}).subscribe( x=> {
+      if (x.type === "msg"){
+        this.navCtrl.push(MessagePage, {
+          item: x
+        })
+      }
+      }
+
+    )
   }
 
 }

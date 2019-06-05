@@ -5,7 +5,8 @@ export interface Field {
   color?: any,
   respUrl?: string,
   method?: string,
-  requiredField?: any;
+  requiredField?: any[];
   headers?: any;
   body?: any;
+  message?: string;
 }
