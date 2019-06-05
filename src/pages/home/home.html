@@ -12,14 +12,5 @@
   </form>
 
   <button ion-button shape="round" (click)="scan()">QR</button>
-  <ion-card *ngIf="res !== undefined">
-    <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let r of res">
-          <ion-label>{{r}}</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
 
 </ion-content>

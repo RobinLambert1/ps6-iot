@@ -1,13 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {User} from "../../models/user";
+import {Field} from "../../models/field";
 
-/*
-  Generated class for the GlobalApiProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class GlobalApiProvider {
 
@@ -15,7 +9,19 @@ export class GlobalApiProvider {
     console.log('Hello GlobalApiProvider Provider');
   }
 
-  requestQrResult(url: string) {
-    return this.http.get<User>(url)
+  getRequest(url: string) {
+    return this.http.get<Field>(url);
+  }
+
+  postRequest(url: string, body: any){
+    return this.http.post<Field>(url, body);
+  }
+
+  putRequest(url: string, body: any){
+    return this.http.put<Field>(url, body);
+  }
+
+  deleteRequest(url: string){
+    return this.http.delete<Field>(url);
   }
 }

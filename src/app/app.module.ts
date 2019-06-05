@@ -12,11 +12,13 @@ import { BriApiProvider } from '../providers/bri-api/bri-api';
 import { HttpClientModule} from "@angular/common/http";
 import { ConnectionApiProvider } from '../providers/connection-api/connection-api';
 import { GlobalApiProvider } from '../providers/global-api/global-api';
+import { QueuePage } from "../pages/queue/queue";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    QueuePage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { GlobalApiProvider } from '../providers/global-api/global-api';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    QueuePage
   ],
   providers: [
     StatusBar,

@@ -3,6 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 import {BarcodeScanner, BarcodeScannerOptions} from "@ionic-native/barcode-scanner";
 import {GlobalApiProvider} from "../../providers/global-api/global-api";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {QueuePage} from "../queue/queue";
 
 @Component({
   selector: 'page-home',
@@ -10,7 +11,6 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class HomePage {
   scannedData: {};
-  res: any;
   form: FormGroup;
   barCodeScannerOptions: BarcodeScannerOptions;
 
@@ -34,10 +34,7 @@ export class HomePage {
   scan() {
     this.barCodeScanner.scan().then(data => {
       this.scannedData = data;
-      this.globalApi.requestQrResult(data.text).subscribe(x => {
-        console.log('result');
-        console.log(x);
-        this.res = x;
+      this.globalApi.getRequest(data.text).subscribe(x => {
       })
     }).catch(err => {
       console.log(err);
@@ -45,8 +42,12 @@ export class HomePage {
   }
 
   getRequest(){
-    this.globalApi.requestQrResult(this.form.value.request).subscribe(x => {
-      console.log(x);
+    this.globalApi.getRequest(this.form.value.request).subscribe(x => {
+      if(x.type === "list"){
+        this.navCtrl.push(QueuePage, {
+          item: x
+        });
+      }
     })
   }
 
