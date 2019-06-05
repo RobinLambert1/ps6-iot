@@ -1,8 +1,6 @@
 export interface Field {
   type?: string,
-  file?: any[],
-  showedName?: any[],
-  color?: any,
+  queue?: any[],
   respUrl?: string,
   method?: string,
   requiredField?: any[];
