@@ -7,4 +7,5 @@ export interface Field {
   headers?: any;
   body?: any;
   message?: string;
+  title?: string;
 }

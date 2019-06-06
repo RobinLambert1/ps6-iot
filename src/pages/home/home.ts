@@ -36,6 +36,11 @@ export class HomePage {
     this.barCodeScanner.scan().then(data => {
       this.scannedData = data;
       this.globalApi.getRequest(data.text).subscribe(x => {
+        if(x.type === "list"){
+          this.navCtrl.push(QueuePage, {
+            item: x
+          });
+        }
       })
     }).catch(err => {
       console.log(err);
