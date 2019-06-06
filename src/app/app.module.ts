@@ -18,17 +18,19 @@ import { MessagePage} from "../pages/message/message";
 
 import {
   MqttModule,
-  IMqttServiceOptions
+  IMqttServiceOptions, MqttService
 } from 'ngx-mqtt';
+
 import { MqttProvider } from '../providers/mqtt/mqtt';
 
-
+export function mqttServiceFactory(){
+  return new MqttService(MQTT_SERVICE_OPTIONS);
+}
 const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
-  hostname: '',
+  hostname: 'localhost',
   port: 9001,
   path: ''
 };
-
 
 @NgModule({
   declarations: [
@@ -44,7 +46,10 @@ const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     IonicModule,
-    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
+    MqttModule.forRoot({
+      provide: MqttService,
+      useFactory: mqttServiceFactory
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

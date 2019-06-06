@@ -20,7 +20,7 @@ export class MqttProvider {
    * @param req
    */
   manageMqtt(req: Field) {
-    if (req.mqtt === undefined) {
+    if (req.mqtt === null) {
       this.mqttService.publish(req.mqtt.request, req.body[req.mqtt.value])
         .subscribe(() => console.log());
     }
