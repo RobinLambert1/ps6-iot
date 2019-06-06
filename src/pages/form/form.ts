@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, FormGroup, FormArray, FormControl} from '@angular/forms';
 import {Field} from "../../models/field";
-import {Item} from "../../models/item";
-
+import {Item} from "../../models/Item";
 
 /**
  * Generated class for the FormPage page.

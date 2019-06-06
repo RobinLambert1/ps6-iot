@@ -4,7 +4,7 @@ import { FormPage } from './form';
 
 @NgModule({
   declarations: [
-    FormPage
+    //FormPage
   ],
   imports: [
     IonicPageModule.forChild(FormPage),
