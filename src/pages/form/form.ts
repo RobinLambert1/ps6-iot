@@ -23,7 +23,7 @@ import {MqttProvider} from "../../providers/mqtt/mqtt";
 export class FormPage {
   requestField: Field;
   items: Item[];
-  display: boolean = true;
+  display: boolean = false;
   test: string ="";
   port: string;
   head: string;

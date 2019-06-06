@@ -27,7 +27,6 @@ export class GlobalApiProvider {
 
   formRequest(method: any, url: string, body: any, header: any){
     if(method === "PUT"){
-      console.log("gtest");
       return this.putRequest(url, undefined, header);
     }
     if(method === "POST"){
