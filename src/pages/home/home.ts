@@ -4,6 +4,7 @@ import {BarcodeScanner, BarcodeScannerOptions} from "@ionic-native/barcode-scann
 import {GlobalApiProvider} from "../../providers/global-api/global-api";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {QueuePage} from "../queue/queue";
+import {FormPage} from "../form/form";
 import {MessagePage} from "../message/message";
 
 @Component({
@@ -46,6 +47,11 @@ export class HomePage {
     this.globalApi.getRequest(this.form.value.request).subscribe(x => {
       if(x.type === "list"){
         this.navCtrl.push(QueuePage, {
+          item: x
+        });
+      }
+      if(x.type === "form"){
+        this.navCtrl.push(FormPage, {
           item: x
         });
       }
