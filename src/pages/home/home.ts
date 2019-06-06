@@ -52,6 +52,12 @@ export class HomePage {
             item: x
           })
         }
+        if(x.type === "form"){
+          this.navCtrl.push(FormPage, {
+            item: x,
+            port: this.form.value.request.split('/')[2]
+          });
+        }
       }, () => {
         this.error = true;
         this.message = "Le QR code ne correspond à aucune requête, veuillez scanner à nouveau un QR code";
@@ -72,7 +78,8 @@ export class HomePage {
       }
       if(x.type === "form"){
         this.navCtrl.push(FormPage, {
-          item: x
+          item: x,
+          port: this.form.value.request.split('/')[2]
         });
       }
       if (x.type === "msg"){
@@ -81,18 +88,6 @@ export class HomePage {
         })
       }
     })
-  }
-
-  putRequest() {
-    this.globalApi.putRequest(this.form.value.request, {}).subscribe( x=> {
-      if (x.type === "msg"){
-        this.navCtrl.push(MessagePage, {
-          item: x
-        })
-      }
-      }
-
-    )
   }
 
 }

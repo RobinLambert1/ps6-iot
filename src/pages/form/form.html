@@ -10,17 +10,35 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
+
+
+
   <div *ngFor="let item of items">
-    <div *ngIf="item.type === 'password'">
-      <ion-input placeholder="{{item.name}}" value="{{item.value}}" type="password">
-      </ion-input>
-    </div>
-    <div *ngIf="item.type !== 'password'">
-      <ion-input placeholder="{{item.name}}" value="{{item.value}}">
-      </ion-input>
+
+      <div *ngIf="item.type === 'password' && this.display===false">
+        <ion-input id="{{item.type}}" placeholder="{{item.name}}"  type="password" [(ngModel)]="item.value">
+        </ion-input>
+        <button ion-button (click)="displayPassword()"></button>
+      </div>
+      <div *ngIf="item.type === 'password' && this.display===true">
+        <ion-input id="{{item.type}}" placeholder="{{item.name}}" [(ngModel)]="item.value">
+        </ion-input>
+        <button ion-button (click)="displayPassword()">Afficher le mot de passe</button>
+      </div>
+      <div *ngIf="item.type === 'email'">
+        <ion-input id="email" placeholder="{{item.name}}" type="email" [(ngModel)]="item.value">
+        </ion-input>
+      </div>
+      <div *ngIf="item.type !== 'password' && item.type !== 'email'">
+        <ion-input id="{{item.type}}"  placeholder="{{item.name}}" [(ngModel)]="item.value">
+        </ion-input>
+      </div>
     </div>
 
-  </div>
-<button></button>
+
+
+
+<button ion-button (click)="saveData()">Sauvegarder</button>
 </ion-content>
