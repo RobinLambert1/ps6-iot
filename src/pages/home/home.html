@@ -12,7 +12,7 @@
   <ion-row justify-content-center text-center style="height: 100%; flex-direction: column">
     <p *ngIf="!error">Veuillez scanner un QR code</p>
     <br>
-    <button ion-button large round style="height: 15%" (click)="scan()">QR</button>
+    <button ion-button large round style="height: 15%" (click)="scan()">Scanner</button>
     <p *ngIf="error" style="color:red">{{message}}</p>
   </ion-row>
 </ion-content>

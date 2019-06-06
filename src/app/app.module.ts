@@ -18,7 +18,8 @@ import { MessagePage} from "../pages/message/message";
 
 import {
   MqttModule,
-  IMqttServiceOptions, MqttService
+  IMqttServiceOptions,
+  MqttService,
 } from 'ngx-mqtt';
 
 import { MqttProvider } from '../providers/mqtt/mqtt';
