@@ -6,6 +6,7 @@ import {HttpHeaders} from "@angular/common/http";
 import {QueuePage} from "../queue/queue";
 import {MessagePage} from "../message/message";
 import {Item} from "../../models/Item";
+import {MqttProvider} from "../../providers/mqtt/mqtt";
 
 /**
  * Generated class for the FormPage page.
@@ -28,10 +29,15 @@ export class FormPage {
   head: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public globalApiProvider: GlobalApiProvider) {
+              public globalApiProvider: GlobalApiProvider,
+              public mqttProvider: MqttProvider
+              ) {
+
+
     this.head = "";
     this.items = [];
     this.requestField = this.navParams.get("item");
+    this.mqttProvider.manageMqtt(this.requestField);
     this.port = this.navParams.get("port");
     this.requestField.requiredField.forEach(rf => {
 
@@ -49,32 +55,39 @@ export class FormPage {
 
   }
 
+
   displayPassword(){
     this.display = !this.display;
   }
 
   saveData(){
     let valuesToReplace: string[];
-    for( let h of Object.keys(this.requestField["headers"])){
+    for( let h of Object.keys(this.requestField["headers"])) {
+
       valuesToReplace = [];
       const val: string = this.requestField["headers"][h];
       let i: number;
       let isReplacable: boolean = false;
-      for(i=0; i<val.length; i++){
-        if(val.charAt(i)==="$"){
+
+      for(i=0; i<val.length; i++) {
+
+        if(val.charAt(i)==="$") {
           isReplacable = true;
           let valueToReplace: string = "";
           i++;
-          while(val.charAt(i) !== "?"){
+          while(val.charAt(i) !== "?") {
             valueToReplace = valueToReplace + val.charAt(i);
             i++;
           }
           valuesToReplace.push(valueToReplace);
         }
       }
-      if(isReplacable){
-        for( let val of valuesToReplace){
-          for(let i of this.items){
+
+
+      if(isReplacable) {
+        for( let val of valuesToReplace) {
+
+          for(let i of this.items) {
             if(i.type === val) {
               const vall = '$' +  val + '?';
               this.requestField["headers"][h] = this.requestField["headers"][h].replace(vall.toString(), i.value);

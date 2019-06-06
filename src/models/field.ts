@@ -10,8 +10,7 @@ export interface Field {
   title?: string;
   style?: any;
   mqtt?: {
-    hostname?: string,
-    port?: string,
     request?: string;
+    value?: string;
   }
 }

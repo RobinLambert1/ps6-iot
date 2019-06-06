@@ -16,6 +16,20 @@ import { QueuePage } from "../pages/queue/queue";
 import { FormPage} from "../pages/form/form";
 import { MessagePage} from "../pages/message/message";
 
+import {
+  MqttModule,
+  IMqttServiceOptions
+} from 'ngx-mqtt';
+import { MqttProvider } from '../providers/mqtt/mqtt';
+
+
+const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  hostname: '',
+  port: 9001,
+  path: ''
+};
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,6 +44,7 @@ import { MessagePage} from "../pages/message/message";
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     IonicModule,
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -46,7 +61,8 @@ import { MessagePage} from "../pages/message/message";
     BriApiProvider,
     ConnectionApiProvider,
     BarcodeScanner,
-    GlobalApiProvider
+    GlobalApiProvider,
+    MqttProvider
   ]
 })
 export class AppModule {}

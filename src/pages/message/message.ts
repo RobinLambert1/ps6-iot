@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Field} from "../../models/field";
+import {MqttProvider} from "../../providers/mqtt/mqtt";
 
 /**
  * Generated class for the MessagePage page.
@@ -18,8 +19,9 @@ export class MessagePage {
 
   field: Field;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mqttProvider: MqttProvider) {
     this.field = this.navParams.get('item');
+    this.mqttProvider.manageMqtt(this.field);
   }
 
   ionViewDidLoad() {
