@@ -15,6 +15,9 @@ export class HomePage {
   form: FormGroup;
   barCodeScannerOptions: BarcodeScannerOptions;
 
+  message: string;
+  error: boolean;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public barCodeScanner: BarcodeScanner, public globalApi: GlobalApiProvider,
               public formBuilder: FormBuilder) {
@@ -27,6 +30,8 @@ export class HomePage {
       showTorchButton: true,
       showFlipCameraButton: true
     }
+
+    this.error = false;
   }
 
   ionViewDidLoad() {
@@ -36,9 +41,14 @@ export class HomePage {
     this.barCodeScanner.scan().then(data => {
       this.scannedData = data;
       this.globalApi.getRequest(data.text).subscribe(x => {
+      }, err => {
+        this.error = true;
+        this.message = "Le QR code ne correspond à aucune requête, veuillez scanner à nouveau un QR code";
       })
     }).catch(err => {
       console.log(err);
+      this.error = true;
+      this.message = "Veuillez scanner un QR code valide";
     });
   }
 

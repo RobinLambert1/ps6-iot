@@ -5,12 +5,14 @@
 </ion-header>
 
 <ion-content padding>
-
   <form class="connection-form" [formGroup]="form">
     <ion-input placeholder="Request" [formControlName]="'request'"></ion-input>
-    <button ion-button shape="round" (click)="getRequest()">Connexion</button>
+    <button ion-button round (click)="getRequest()">Connexion</button>
   </form>
-
-  <button ion-button shape="round" (click)="scan()">QR</button>
-
+  <ion-row justify-content-center text-center style="height: 100%; flex-direction: column">
+    <p *ngIf="!error">Veuillez scanner un QR code</p>
+    <br>
+    <button ion-button large round style="height: 15%" (click)="scan()">QR</button>
+    <p *ngIf="error" style="color:red">{{message}}</p>
+  </ion-row>
 </ion-content>
