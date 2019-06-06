@@ -55,15 +55,14 @@ export class HomePage {
         if(x.type === "form"){
           this.navCtrl.push(FormPage, {
             item: x,
-            port: this.form.value.request.split('/')[2]
+            port: data.text.split('/')[2]
           });
         }
       }, () => {
         this.error = true;
         this.message = "Le QR code ne correspond à aucune requête, veuillez scanner à nouveau un QR code";
       })
-    }).catch(err => {
-      console.log(err);
+    }).catch(() => {
       this.error = true;
       this.message = "Veuillez scanner un QR code valide";
     });

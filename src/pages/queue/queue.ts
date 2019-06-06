@@ -36,7 +36,6 @@ export class QueuePage {
       });
       this.values.push(listValue);
     }
-    console.log(this.values);
   }
 
 
