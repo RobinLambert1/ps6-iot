@@ -11,6 +11,6 @@ export interface Field {
   style?: any;
   mqtt?: {
     request?: string;
-    value?: string;
+    msg?: string;
   }
 }
