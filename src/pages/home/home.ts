@@ -30,7 +30,7 @@ export class HomePage {
     this.barCodeScannerOptions = {
       showTorchButton: true,
       showFlipCameraButton: true
-    }
+    };
 
     this.error = false;
   }
@@ -42,12 +42,17 @@ export class HomePage {
     this.barCodeScanner.scan().then(data => {
       this.scannedData = data;
       this.globalApi.getRequest(data.text).subscribe(x => {
+        this.error = false;
         if(x.type === "list"){
           this.navCtrl.push(QueuePage, {
             item: x
           });
+        } else if (x.type === "msg"){
+          this.navCtrl.push(MessagePage, {
+            item: x
+          })
         }
-      }, err => {
+      }, () => {
         this.error = true;
         this.message = "Le QR code ne correspond à aucune requête, veuillez scanner à nouveau un QR code";
       })
@@ -69,6 +74,11 @@ export class HomePage {
         this.navCtrl.push(FormPage, {
           item: x
         });
+      }
+      if (x.type === "msg"){
+        this.navCtrl.push(MessagePage, {
+          item: x
+        })
       }
     })
   }

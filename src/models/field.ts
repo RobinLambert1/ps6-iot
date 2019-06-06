@@ -8,4 +8,5 @@ export interface Field {
   body?: any;
   message?: string;
   title?: string;
+  style?: any;
 }

@@ -1,13 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>message</ion-title>
+    <div *ngIf="field !== undefined">
+      <ion-title *ngIf="field.title === undefined">Votre message</ion-title>
+      <ion-title *ngIf="field.title !== undefined">{{field.title}}</ion-title>
+    </div>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-content>
-      {{field.message}}
-    </ion-card-content>
+  <ion-card [ngStyle]="field.style">
+    {{field.message}}
   </ion-card>
 </ion-content>

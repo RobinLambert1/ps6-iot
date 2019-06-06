@@ -14,6 +14,7 @@ import { ConnectionApiProvider } from '../providers/connection-api/connection-ap
 import { GlobalApiProvider } from '../providers/global-api/global-api';
 import { QueuePage } from "../pages/queue/queue";
 import { FormPage} from "../pages/form/form";
+import { MessagePage} from "../pages/message/message";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormPage} from "../pages/form/form";
     HomePage,
     QueuePage,
     FormPage,
+    MessagePage
 
   ],
   imports: [
@@ -35,6 +37,7 @@ import { FormPage} from "../pages/form/form";
     HomePage,
     QueuePage,
     FormPage,
+    MessagePage
   ],
   providers: [
     StatusBar,
