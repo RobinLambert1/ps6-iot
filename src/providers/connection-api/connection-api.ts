@@ -29,6 +29,7 @@ export class ConnectionApiProvider {
     const credientials = `${email}:${password}`;
     localStorage.setItem('token', credientials);
 
+
     const header = new HttpHeaders({
       'Authorization': localStorage.getItem('token')
     });

@@ -1,14 +1,20 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Votre liste</ion-title>
-  </ion-navbar>
+    <div *ngIf="field !== undefined">
+      <ion-title *ngIf="field.title === undefined">Votre liste</ion-title>
+      <ion-title *ngIf="field.title !== undefined">{{field.title}}</ion-title>
+    </div>
+   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list *ngIf="field !== undefined">
-      <ion-item *ngFor="let val of values; let i = index" [style.background-color]="drawColor(i)">
-        <ion-label *ngFor="let item of val">
+<ion-content *ngIf="field !== undefined" padding>
+  <ion-card *ngFor="let val of values; let i = index">
+    <ion-list>
+      <ion-item *ngFor="let item of val" [ngStyle]="drawStyle(i)">
+        <ion-label>
           {{drawItem(i, item)}}</ion-label>
       </ion-item>
-  </ion-list>
+    </ion-list>
+  </ion-card>
 </ion-content>
+

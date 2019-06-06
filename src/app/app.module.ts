@@ -13,24 +13,28 @@ import { HttpClientModule} from "@angular/common/http";
 import { ConnectionApiProvider } from '../providers/connection-api/connection-api';
 import { GlobalApiProvider } from '../providers/global-api/global-api';
 import { QueuePage } from "../pages/queue/queue";
+import { FormPage} from "../pages/form/form";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    QueuePage
+    QueuePage,
+    FormPage,
+
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicModule
+    IonicModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    QueuePage
+    QueuePage,
+    FormPage,
   ],
   providers: [
     StatusBar,
@@ -39,7 +43,7 @@ import { QueuePage } from "../pages/queue/queue";
     BriApiProvider,
     ConnectionApiProvider,
     BarcodeScanner,
-    GlobalApiProvider
+    GlobalApiProvider,
   ]
 })
 export class AppModule {}

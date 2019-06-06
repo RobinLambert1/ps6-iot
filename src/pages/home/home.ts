@@ -4,6 +4,7 @@ import {BarcodeScanner, BarcodeScannerOptions} from "@ionic-native/barcode-scann
 import {GlobalApiProvider} from "../../providers/global-api/global-api";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {QueuePage} from "../queue/queue";
+import {FormPage} from "../form/form";
 import {MessagePage} from "../message/message";
 
 @Component({
@@ -41,6 +42,11 @@ export class HomePage {
     this.barCodeScanner.scan().then(data => {
       this.scannedData = data;
       this.globalApi.getRequest(data.text).subscribe(x => {
+        if(x.type === "list"){
+          this.navCtrl.push(QueuePage, {
+            item: x
+          });
+        }
       }, err => {
         this.error = true;
         this.message = "Le QR code ne correspond à aucune requête, veuillez scanner à nouveau un QR code";
@@ -56,6 +62,11 @@ export class HomePage {
     this.globalApi.getRequest(this.form.value.request).subscribe(x => {
       if(x.type === "list"){
         this.navCtrl.push(QueuePage, {
+          item: x
+        });
+      }
+      if(x.type === "form"){
+        this.navCtrl.push(FormPage, {
           item: x
         });
       }
