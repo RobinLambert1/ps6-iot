@@ -1,3 +1,9 @@
+<!--
+  Generated template for the FormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
   <ion-navbar>
     <ion-title>form</ion-title>
@@ -7,29 +13,46 @@
 
 <ion-content padding>
 
+  <ion-row justify-content-center>
+    <ion-card>
+      <div *ngFor="let item of items">
 
-  <div *ngFor="let item of items">
+        <div *ngIf="item.type === 'password' && this.display===false">
+          <ion-item>
+            <ion-label floating>{{item.name}}</ion-label>
+            <ion-input  type="password" [(ngModel)]="item.value"></ion-input>
+            <button ion-button round (click)="displayPassword()">Afficher le mot de passe</button>
+          </ion-item>
 
-      <div *ngIf="item.type === 'password' && this.display===false">
-        <ion-input placeholder="{{item.name}}"  type="password" [(ngModel)]="item.value">
-        </ion-input>
-        <button ion-button (click)="displayPassword()"></button>
-      </div>
-      <div *ngIf="item.type === 'password' && this.display===true">
-        <ion-input placeholder="{{item.name}}" [(ngModel)]="item.value">
-        </ion-input>
-        <button ion-button (click)="displayPassword()">Afficher le mot de passe</button>
-      </div>
-      <div *ngIf="item.type === 'email'">
-        <ion-input id="email" placeholder="{{item.name}}" type="email" [(ngModel)]="item.value">
-        </ion-input>
-      </div>
-      <div *ngIf="item.type !== 'password' && item.type !== 'email'">
-        <ion-input placeholder="{{item.name}}" [(ngModel)]="item.value">
-        </ion-input>
-      </div>
-    </div>
+        </div>
+        <div *ngIf="item.type === 'password' && this.display===true">
+          <ion-item>
+            <ion-label floating>{{item.name}}</ion-label>
+            <ion-input [(ngModel)]="item.value"></ion-input>
+            <button ion-button round (click)="displayPassword()">Masquer le mot de passe</button>
+          </ion-item>
+        </div>
 
+        <div *ngIf="item.type === 'email'">
+          <ion-item>
+            <ion-label floating>{{item.name}}</ion-label>
+            <ion-input type="email" [(ngModel)]="item.value"></ion-input>
+          </ion-item>
+        </div>
 
-<button ion-button (click)="saveData()">Sauvegarder</button>
+        <div *ngIf="item.type !== 'password' && item.type !== 'email'">
+          <ion-item>
+            <ion-label floating>{{item.name}}</ion-label>
+            <ion-input [(ngModel)]="item.value"></ion-input>
+          </ion-item>
+        </div>
+
+      </div>
+
+    </ion-card>
+
+      <button ion-button round full (click)="saveData()">Sauvegarder</button>
+
+  </ion-row>
+
 </ion-content>
