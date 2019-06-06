@@ -15,7 +15,6 @@ import { GlobalApiProvider } from '../providers/global-api/global-api';
 import { QueuePage } from "../pages/queue/queue";
 import { FormPage} from "../pages/form/form";
 import { MessagePage} from "../pages/message/message";
-import { OrchestratorProvider } from '../providers/orchestrator/orchestrator';
 
 @NgModule({
   declarations: [
@@ -47,8 +46,7 @@ import { OrchestratorProvider } from '../providers/orchestrator/orchestrator';
     BriApiProvider,
     ConnectionApiProvider,
     BarcodeScanner,
-    GlobalApiProvider,
-    OrchestratorProvider,
+    GlobalApiProvider
   ]
 })
 export class AppModule {}

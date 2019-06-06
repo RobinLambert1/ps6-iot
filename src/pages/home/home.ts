@@ -1,4 +1,4 @@
-simport { Component } from '@angular/core';
+import { Component } from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {BarcodeScanner, BarcodeScannerOptions} from "@ionic-native/barcode-scanner";
 import {GlobalApiProvider} from "../../providers/global-api/global-api";
